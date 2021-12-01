@@ -24,9 +24,35 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    signingConfigs {
+        debug {
+            keyAlias "android"
+            keyPassword "123456"
+            storeFile file("pack.js")
+            storePassword "123456"
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+        release {
+            keyAlias "android"
+            keyPassword "123456"
+            storeFile file("pack.js")
+            storePassword "123456"
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+
+    }
+
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
